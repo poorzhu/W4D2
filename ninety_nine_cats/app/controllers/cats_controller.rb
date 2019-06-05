@@ -20,8 +20,36 @@ class CatsController < ApplicationController
     render :new
   end
 
+  def create
+    @cat = Cat.new(cat_params)
+
+    if @cat.save
+      redirect_to cat_url(@cat)
+    else
+      render :new
+    end
+  end
+
   def edit
     @cat = Cat.find_by(id: params[:id])
     render :edit
+  end
+
+  def update
+    # debugger
+    @cat = Cat.find_by(id: params[:id])
+
+    if @cat.update_attributes(cat_params)
+      redirect_to cat_url(@cat)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def cat_params
+    # permit accessing attributes using .permit if needed
+    params.require(:cat).permit(:name, :birth_date, :color, :sex, :description)
   end
 end

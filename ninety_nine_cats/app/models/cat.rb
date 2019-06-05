@@ -1,7 +1,9 @@
-require 'action_view'
+
 
 class Cat < ApplicationRecord
-  include ActionView::Helpers::DateHelper
+  has_many :cat_rental_requests, dependent: :destroy
+
+
   
   validates :birth_date, presence: true
   validates :color, presence: true, inclusion: { in: %w(black orange white grey rainbow),

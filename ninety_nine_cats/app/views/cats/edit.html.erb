@@ -1,31 +1,3 @@
 <h1>Edit a cat to the 99 Cats Library!!! <--- Excitement</h1>
 
-<form action="<%=cat_url(@cat)%>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <label for="name">Name: </label>
-  <input id="name" type="text" name="cat[name]" value="<%= @cat.name%>">
-  <br>
-  <label for="birth_date" >Birthdate: </label>
-  <input id="birth_date" type="date" name="cat[birth_date]" value="<%= @cat.birth_date%>">
-  <br>
-  Sex: <select id="sex" name="cat[sex]"> 
-    <option selected=true disabled></option>
-    <option value="M" <%= @cat.sex == "M" ? "selected" : ""%>>M</option>
-    <option value="F" <%= @cat.sex == "F" ? "selected" : ""%>>F</option>
-  </select>
-  <br>
-  <label for="description">Description: </label>
-  <input id="description" type="textarea" name="cat[description]" value="<%= @cat.description%>">
-  <br>
-  Color: <select id="color" name="cat[color]">
-    <option selected=true disabled></option>
-    <option value="black" <%= @cat.color == "black" ? "selected" : ""%> >black</option>
-    <option value="orange"<%= @cat.color == "orange" ? "selected" : ""%> >orange</option>
-    <option value="white" <%= @cat.color == "white" ? "selected" : ""%>>white</option>
-    <option value="grey" <%= @cat.color == "grey" ? "selected" : ""%>>grey</option>
-    <option value="rainbow" <%= @cat.color == "rainbow" ? "selected" : ""%>>rainbow</option>
-  </select>
-  <br>
-  <br>
-  <input type="submit" value="Submit">
-</form>
+<%= render 'form', cat: @cat, action: :edit %>
